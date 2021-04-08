@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.list_item.*
 class ListActivity : AppCompatActivity(){
 
     var list = arrayListOf<Bible>(
-        Bible("마복"),Bible("출굽")
+        Bible("창기","tae"),Bible("출굽","chul")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +26,7 @@ class ListActivity : AppCompatActivity(){
             val nextIntent = Intent(this, BibleActivity::class.java)
             nextIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)//
             nextIntent.putExtra("Bible",list[position].bible)
+            nextIntent.putExtra("Value",list[position].value)
             nextIntent.putExtra("Content",list[position].bible+"내용들...")
             startActivity(nextIntent)
         }
