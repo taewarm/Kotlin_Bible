@@ -56,53 +56,7 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="top|center"
-            android:weightSum="6">
-        <Spinner
-                android:id="@+id/spn_page_s"
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-        <TextView
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="ㅈ"/>
-        <Spinner
-                android:id="@+id/spn_row_s"
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-        <TextView
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="ㅈ"/>
-        <Spinner
-                android:id="@+id/spn_page_e"
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-        <TextView
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="ㅈ"/>
-        <Spinner
-                android:id="@+id/spn_row_e"
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-        <TextView
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="ㅈ"/>
-    </LinearLayout>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -115,10 +69,55 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 <TextView
-                        android:id="@+id/bible_content"
+                        android:id="@+id/bible_content1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="시작"
+                        android:textSize="100dp"/>
+                <TextView
+                        android:id="@+id/bible_content2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="100dp"/>
+                <TextView
+                        android:id="@+id/bible_content3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="100dp"/>
+                <TextView
+                        android:id="@+id/bible_content4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="100dp"/>
+                <TextView
+                        android:id="@+id/bible_content5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="100dp"/>
+                <TextView
+                        android:id="@+id/bible_content6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="100dp"/>
+                <TextView
+                        android:id="@+id/bible_content7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="100dp"/>
+                <TextView
+                        android:id="@+id/bible_content8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="100dp"/>
+                <TextView
+                        android:id="@+id/bible_content9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="100dp"/>
+                <TextView
+                        android:id="@+id/bible_content10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:textSize="100dp"/>
             </LinearLayout>
         </ScrollView>
