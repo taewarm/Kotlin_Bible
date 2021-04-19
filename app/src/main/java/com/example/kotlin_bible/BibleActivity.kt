@@ -24,6 +24,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.coroutines.coroutineContext
 
+/**이거 다이얼로그 context관리 힘드니까 일단 intent로 기능구현 먼저 해볼것
+ * Page, List Activity에서 api값 가져오고 그걸 뿌려주는게 제일 이상적인 방안인거같음 깔끔하고
+ * 완성후 코드정리할것*/
+
 open class BibleActivity : AppCompatActivity(){
     var page = arrayListOf<String>()
     var row = arrayListOf<String>()
@@ -41,11 +45,13 @@ open class BibleActivity : AppCompatActivity(){
         val bititle = intent.getStringExtra("Bible").toString()
         val vallue = intent.getStringExtra("Value").toString()
         val bicontent = intent.getStringExtra("Content").toString()
-        val dialog = CustomDialog(this)
+        val ppage = intent.getStringExtra("Ppage").toString()
+        val rrow = intent.getStringExtra("Rrow").toString()
+        //val dialog = CustomDialog(this)
         TWAPIstart(vallue,"page=1")
         Log.i("여기",vallue+"page=1")
         if(bicontent == "null"){//null을 문자열로 한이유가 Content는 값이 null인데 toString으로 문자열로 바꿈
-            bible_content1.setText("시작")
+            bible_content1.setText(ppage+rrow)
         }else{
             bible_content1.setText(bicontent)
         }
@@ -57,9 +63,11 @@ open class BibleActivity : AppCompatActivity(){
 
         }
         btn_search.setOnClickListener {
+            val nextIntent1 = Intent(this, PageActivity::class.java)
+            startActivity(nextIntent1)
 //            scl_bible.smoothScrollTo(0,bible_content2.top);
-            Log.i("여기",scl_bible.scrollY.toString())
-            dialog.myDig()
+            //Log.i("여기",scl_bible.scrollY.toString())
+            //dialog.myDig(this)
         }
         //스크롤 움직일때마다 y좌표값 로그 출력
 //        scl_bible.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
@@ -68,37 +76,41 @@ open class BibleActivity : AppCompatActivity(){
 
     }
 
-    class CustomDialog(context: Context) : BibleActivity(){
-        private val dialog = Dialog(context)
-        var tae1 : String =""
-        var tae2 : String =""
-        val list = arrayListOf<String>("1","2","3")
-        val list1 = arrayListOf<String>("1","2","3")
-        val myAdapter = ArrayAdapter(dialog.context,android.R.layout.simple_spinner_dropdown_item,list)
-        val myAdapter1 = ArrayAdapter(dialog.context,android.R.layout.simple_spinner_dropdown_item,list1)
-        fun myDig(){
-            dialog.setContentView(R.layout.dialog_bible)
-
-            val spp_list = dialog.sp_list
-            val spp_list1 = dialog.sp_list1
-            spp_list.adapter = myAdapter
-            spp_list1.adapter = myAdapter1
-            dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT)
-            val btn_Ok = dialog.btn_ok
-            btn_Ok.setOnClickListener {
-                Log.i("여기","실행")
-                val sel = spp_list.selectedItemPosition
-                val sel1 = spp_list1.selectedItemPosition
-                tae1 = spp_list.getItemAtPosition(sel).toString()
-                tae2 = spp_list1.getItemAtPosition(sel1).toString()
-                TWAPIstart("tae","/page=1")
-                dialog.hide()
-            }
-            dialog.setCanceledOnTouchOutside(true)
-            dialog.setCancelable(true)
-            dialog.show()
-        }
-    }
+//    class CustomDialog(context: Context) : BibleActivity(){
+//        private val dialog = Dialog(context)
+//        var tae1 : String =""
+//        var tae2 : String =""
+//        val list = arrayListOf<String>("1","2","3")
+//        val list1 = arrayListOf<String>("1","2","3")
+//        val myAdapter = ArrayAdapter(dialog.context,android.R.layout.simple_spinner_dropdown_item,list)
+//        val myAdapter1 = ArrayAdapter(dialog.context,android.R.layout.simple_spinner_dropdown_item,list1)
+//        fun myDig(context: Context){
+//            dialog.setContentView(R.layout.dialog_bible)
+//
+//            val spp_list = dialog.sp_list
+//            val spp_list1 = dialog.sp_list1
+//            spp_list.adapter = myAdapter
+//            spp_list1.adapter = myAdapter1
+//            dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT)
+//            val btn_Ok = dialog.btn_ok
+//            btn_Ok.setOnClickListener {
+//                Log.i("여기","실행")
+//                val sel = spp_list.selectedItemPosition
+//                val sel1 = spp_list1.selectedItemPosition
+//                tae1 = spp_list.getItemAtPosition(sel).toString()
+//                tae2 = spp_list1.getItemAtPosition(sel1).toString()
+//                //TWAPIstart("tae","/page=1")
+//                val nextIntent = Intent(context, BibleActivity::class.java)
+//                nextIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                nextIntent.putExtra("page",tae1)
+//                nextIntent.putExtra("row",tae2)
+//                dialog.hide()
+//            }
+//            dialog.setCanceledOnTouchOutside(true)
+//            dialog.setCancelable(true)
+//            dialog.show()
+//        }
+//    }
 
 
 
@@ -131,7 +143,6 @@ open class BibleActivity : AppCompatActivity(){
                     b3 = page[2]+"ㅈ"+row[2]+"ㅈ"+content[2]
                     b4 = page[3]+"ㅈ"+row[3]+"ㅈ"+content[3]
                     b5 = page[4]+"ㅈ"+row[4]+"ㅈ"+content[4]
-                    SetContent(b1, b2, b3, b4, b5)
                 }
             }
 

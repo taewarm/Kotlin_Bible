@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".BibleActivity"/>
         <activity android:name=".ListActivity"/>
+        <activity android:name=".PageActivity"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
